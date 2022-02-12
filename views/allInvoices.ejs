@@ -1,0 +1,41 @@
+<%-include('header');-%>
+<div class = "box" id="heading">
+  <h1>All Invoices</h1>
+</div>
+<div class="box">
+<table>
+
+  <tr>
+      <th> Invoice</th>
+      <th> Status</th>
+      <th> Due Date</th>
+  </tr>
+  <% displayInvoices.forEach(function(invoice){ %>
+  <tr>
+    <td><%=invoice._id%></td>
+    <td><%=invoice.status%></td>
+    <td><%=invoice.dueDate%></td>
+      <form action = "/viewInvoice" method = "post">
+    <td>
+    <button type="submit" name = "viewInvoiceById" value="<%=invoice._id%>"> View </button>
+    </td>
+    </form>
+    <td>
+      <form action = "/emailInvoice" method = "post">
+      <button type="submit" name = "emailInvoiceById" value="<%=invoice._id%>"> Email Invoice </button>
+      </form>
+    </td>
+    <td>
+      <form action = "/updateStatus" method = "post">
+        <select name="updateStatusTo" >
+            <% status.forEach(function(s){ %>
+              <option value="<%=s%>"> <%=s%> </option>
+            <%});%>
+        </select>
+      <button type="submit" name = "updateStatusById" value="<%=invoice._id%>"> Update Status </button>
+      </form>
+    </td>
+  </tr>
+<%});%>
+</table>
+</div>

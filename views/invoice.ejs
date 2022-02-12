@@ -1,0 +1,65 @@
+<%-include('header');-%>
+
+      <div class = "box" id="heading">
+        <h1>Invoice</h1>
+      </div>
+
+        Dated: <%=invoiceDetails.date%><br />
+        Due Date: <%=invoiceDetails.dueDate%><br />
+
+<div class="box">
+
+  <table>
+
+    <tr>
+        <th> S.no</th>
+        <th> Item Name</th>
+        <th> Material</th>
+        <th> Quantity</th>
+        <th> Price Per Piece</th>
+        <th> Hours Of Work</th>
+        <th class = "item"> Rate Per Hour</th>
+        <th> Labour Cost</th>
+        <th> Total</th>
+    </tr>
+      <% let i = 1; %>
+      <% invoiceDetails.lineItems.forEach(function(item){ %>
+          <tr>
+            <td><%=i++%>            </td>
+            <td><%=item.itemName%></td>
+            <td><%=item.material%></td>
+            <td><%=item.quantity%>
+            </td> <td><%=item.price%></td>
+            <td><%=item.hoursOfWork%></td>
+            <td><%=item.ratePerHour%></td>
+            <td><%=item.labourCost%></td>
+            <td><%=item.total%></td>
+          </tr>
+      <%});%>
+      <tr>
+        <th>
+          Grand Total:
+        </th>
+        <th>
+          <%=invoiceDetails.grandTotal%>
+        </th>
+      </tr>
+    </table>
+
+  <table id="footerTable">
+    <tr>
+      <th class = "footerItem">Send your cheques at:      </th>
+      <th class = "footerItem">Mode of Payment:      </th>
+      <th>
+        Status of Payment:
+      </th>
+    </tr>
+
+    <tr>
+      <td><%=invoiceDetails.notes[0].sendChecksAtAddress%> </td>
+      <td><%=invoiceDetails.notes[0].modeOfPayment%> </td>
+      <td><%=invoiceDetails.status%> </td>
+    </tr>
+  </table>
+  
+<%-include('footer');-%>

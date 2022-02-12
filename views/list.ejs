@@ -1,0 +1,60 @@
+<%-include('header');-%>
+
+      <div class = "box" id="heading">
+        <h1><%= listTitle%></h1>
+      </div>
+<div class="box">
+
+  <table>
+
+    <tr>
+        <th> Item Name</th>
+        <th> Material</th>
+        <th> Quantity</th>
+        <th> Price Per Piece</th>
+        <th> Hours Of Work</th>
+        <th class = "item"> Rate Per Hour</th>
+        <th> Labour Cost</th>
+        <th> Total</th>
+    </tr>
+
+      <% newListItems.forEach(function(item){ %>
+          <tr>
+            <td><%=item.itemName%></td>
+            <td><%=item.material%></td>
+            <td><%=item.quantity%>
+            </td> <td><%=item.price%></td>
+            <td><%=item.hoursOfWork%></td>
+            <td><%=item.ratePerHour%></td>
+            <td><%=item.labourCost%></td>
+            <td><%=item.total%></td>
+          </tr>
+      <%});%>
+
+      <form class="item" action="/" method="post">
+      <tr>
+       <td><input type="text" placeholder= "Item" name="itemName" autocomplete="off"/> </td>
+       <td><input type="text" placeholder= "Material" name="material" autocomplete="off"/> </td>
+       <td><input type="text" placeholder= "Quantity" name="quantity" autocomplete="off"/> </td>
+       <td><input type="text" placeholder= "Price" name="price" autocomplete="off"/> </td>
+       <td><input type="text" placeholder= "Hours of Work" name="hoursOfWork" autocomplete="off"/> </td>
+       <td><input type="text" placeholder= "Rate Per Hour" name="ratePerHour" autocomplete="off"/> </td>
+      </tr>
+        </table>
+        <button class="addButton" type="submit" name="list">+ </button>
+        </form>
+  </div>
+  <table id="footerTable">
+    <tr>
+      <th class = "footerItem">Send your cheques at:      </th>
+      <th class = "footerItem">Mode of Payment:      </th>
+    </tr>
+
+    <tr>
+      <form action = "/createInvoice" method = "post">
+      <td><input  id = "footerPlaceholder" type="text" placeholder= "Enter Address" name="sendChecksAtAddress" autocomplete="off"/> </td>
+      <td><input type="text" placeholder= "Enter Mode Of Payment" name="modeOfPayment" autocomplete="off"/> </td>
+      <td><button type="submit"> Create Invoice </td>
+    </tr>
+  </table>
+<%-include('footer');-%>
